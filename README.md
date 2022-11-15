@@ -4,5 +4,5 @@
 Repositorio dedicado al proyecto de programación: Tres en raya  
 
 ## ***Programa en python:***  
-[Descripción y documentación](Programa/Readme.md)  
-[Programa (en desarrollo)](Programa/tres_raya.py)
+- [Descripción y documentación](Programa/Readme.md)  
+- [Programa (en desarrollo)](Programa/tres_raya.py)
