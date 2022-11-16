@@ -17,6 +17,19 @@ while True:
         columna = int(input("Posición dentro de la fila: "))
         if fila == 1 and columna == 1:
             tablero[0] = figura_juagdor1
-        print(fila1)
-        print(fila2)
-        print(fila3)
+            new_fila1 = f'{tablero[0]} | {tablero[1]} | {tablero[2]}'
+        elif fila == 1 and columna == 2:
+            tablero[1] = figura_juagdor1
+            new_fila1
+        elif fila == 1 and columna == 3:
+            tablero[2] = figura_juagdor1
+            new_fila1
+        elif fila == 2 and columna == 1:
+            tablero[3] = figura_juagdor1
+            new_fila1
+        elif fila == 2 and columna == 2:
+            tablero[4] = figura_juagdor1
+            new_fila1
+        elif fila == 2 and columna == 3:
+            tablero[5] = figura_juagdor1
+            new_fila1
