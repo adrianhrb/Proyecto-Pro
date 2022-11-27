@@ -15,73 +15,37 @@ while True:
     if player_flow == True:
         print("Le toca a", jugador1, "⭕, selecciona una fila (1,2 o 3) y una columna(a, b, o c)")
         fila = int(input("Fila de colocación: "))
-        columna = input("Columna: ")    
+        columna = input("Columna: ") 
+        
         if fila == 1 and columna.lower() == 'a':
-            if tablero[0] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[0] = figura_jugador1
-                fila1 = f'{tablero[0]} | {tablero[1]} | {tablero[2]}'
-                result = avaiable_square
+            n = 0
         elif fila == 1 and columna.lower() == 'b':
-            if tablero[1] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[1] = figura_jugador1
-                fila1 = f'{tablero[0]} | {tablero[1]} | {tablero[2]}'
+            n = 1
         elif fila == 1 and columna.lower() == 'c':
-            if tablero[2] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[2] = figura_jugador1
-                fila1 = f'{tablero[0]} | {tablero[1]} | {tablero[2]}'
-                result = avaiable_square
+            n = 2
         elif fila == 2 and columna.lower() == 'a':
-            if tablero[3] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[3] = figura_jugador1
-                fila2 = f'{tablero[3]} | {tablero[4]} | {tablero[5]}'
-                result = avaiable_square
+            n = 3
         elif fila == 2 and columna.lower() == 'b':
-            if tablero[4] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[4] = figura_jugador1
-                fila2 = f'{tablero[3]} | {tablero[4]} | {tablero[5]}'
-                result = avaiable_square
+            n = 4
         elif fila == 2 and columna.lower() == 'c':
-            if tablero[5] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[5] = figura_jugador1
-                fila2 = f'{tablero[3]} | {tablero[4]} | {tablero[5]}'
-                result = avaiable_square
+            n = 5
         elif fila == 3 and columna.lower() == 'a':
-            if tablero[6] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[6] = figura_jugador1
-                fila3 = f'{tablero[6]} | {tablero[7]} | {tablero[8]}'
-                result = avaiable_square
+            n = 6
         elif fila == 3 and columna.lower() == 'b':
-            if tablero[7] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[7] = figura_jugador1
-                fila3 = f'{tablero[6]} | {tablero[7]} | {tablero[8]}'
-                result = avaiable_square
+            n = 7
         elif fila == 3 and columna.lower() == 'c':
-            if tablero[8] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[8] = figura_jugador1
-                fila3 = f'{tablero[6]} | {tablero[7]} | {tablero[8]}'
-                result = avaiable_square
+            n = 8
+        if tablero[n] != espacio_blanco:
+            result = occupied_square
+        else: 
+            result = avaiable_square   
+            tablero[n] = figura_jugador1
+            player_flow = not player_flow
+            fila1 = f'{tablero[0]} | {tablero[1]} | {tablero[2]}'
+            fila2 = f'{tablero[3]} | {tablero[4]} | {tablero[5]}'
+            fila3 = f'{tablero[6]} | {tablero[7]} | {tablero[8]}'
         print(fila1, fila2, fila3, sep="\n")
         print(result)
-        if result == avaiable_square:
-            player_flow = not player_flow
         
 
     elif player_flow == False:
@@ -89,73 +53,38 @@ while True:
         fila = int(input("Fila de colocación: "))
         columna = input("Columna: ")    
         if fila == 1 and columna.lower() == 'a':
-            if tablero[0] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[0] = figura_jugador2
-                fila1 = f'{tablero[0]} | {tablero[1]} | {tablero[2]}'
+            n = 0
         elif fila == 1 and columna.lower() == 'b':
-            if tablero[1] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[1] = figura_jugador2
-                fila1 = f'{tablero[0]} | {tablero[1]} | {tablero[2]}'
-                result = avaiable_square
+            n = 1
         elif fila == 1 and columna.lower() == 'c':
-            if tablero[2] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[2] = figura_jugador2
-                fila1 = f'{tablero[0]} | {tablero[1]} | {tablero[2]}'
-                result = avaiable_square
+            n = 2
         elif fila == 2 and columna.lower() == 'a':
-            if tablero[3] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[3] = figura_jugador2
-                fila2 = f'{tablero[3]} | {tablero[4]} | {tablero[5]}'
-                result = avaiable_square
+            n = 3
         elif fila == 2 and columna.lower() == 'b':
-            if tablero[4] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[4] = figura_jugador2
-                fila2 = f'{tablero[3]} | {tablero[4]} | {tablero[5]}'
-                result = avaiable_square
+            n = 4
         elif fila == 2 and columna.lower() == 'c':
-            if tablero[5] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[5] = figura_jugador2
-                fila2 = f'{tablero[3]} | {tablero[4]} | {tablero[5]}'
-                result = avaiable_square
+            n = 5
         elif fila == 3 and columna.lower() == 'a':
-            if tablero[6] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[6] = figura_jugador2
-                fila3 = f'{tablero[6]} | {tablero[7]} | {tablero[8]}'
-                result = avaiable_square
+            n = 6
         elif fila == 3 and columna.lower() == 'b':
-            if tablero[7] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[7] = figura_jugador2
-                fila3 = f'{tablero[6]} | {tablero[7]} | {tablero[8]}'
-                result = avaiable_square
+            n = 7
         elif fila == 3 and columna.lower() == 'c':
-            if tablero[8] != espacio_blanco:
-                result = occupied_square
-            else:
-                tablero[8] = figura_jugador2
-                fila3 = f'{tablero[6]} | {tablero[7]} | {tablero[8]}'
-                result = avaiable_square
+            n = 8
+        if tablero[n] != espacio_blanco:
+            result = occupied_square
+        else: 
+            result = avaiable_square   
+            tablero[n] = figura_jugador2
+            player_flow = not player_flow
+            fila1 = f'{tablero[0]} | {tablero[1]} | {tablero[2]}'
+            fila2 = f'{tablero[3]} | {tablero[4]} | {tablero[5]}'
+            fila3 = f'{tablero[6]} | {tablero[7]} | {tablero[8]}'
         print(fila1, fila2, fila3, sep="\n")
         print(result)
-        if result == avaiable_square:
-            player_flow = not player_flow
 
-#Establecemos las condiciones de victoria, clarificando que si son espacios en blanco no se gana
+            
+
+'''#Establecemos las condiciones de victoria, clarificando que si son espacios en blanco no se gana
     if tablero[0] and tablero[1] and tablero[2] != espacio_blanco:
         if tablero[0] == tablero[1] and tablero[2]:
             print("Ganates loco")
@@ -195,6 +124,6 @@ while True:
         if tablero[2] == tablero[5] and tablero[8]:
             print("Ganates loco")
             print(fila1, fila2, fila3, sep="\n")
-            break
+            break'''
             
 
