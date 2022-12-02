@@ -29,10 +29,10 @@ win6 = tablero[0][2] == tablero[1][2] == tablero[2][2]
 win7 = tablero[0][0] == tablero[1][1] == tablero[2][2]
 win8 = tablero[0][2] == tablero[1][1] == tablero[2][0]
 win_condition_circle = (
-    all([win1, win2, win3, win4, win5, win6, win7, win8]) == figura_jugador1
+    any([win1, win2, win3, win4, win5, win6, win7, win8]) == figura_jugador1
 )
 win_condition_x = (
-    all([win1, win2, win3, win4, win5, win6, win7, win8]) == figura_jugador2
+    any([win1, win2, win3, win4, win5, win6, win7, win8]) == figura_jugador2
 )
 victory = "Congratulations! You win the game"
 draw = "The game is tied"
@@ -42,13 +42,13 @@ while moves_count < moves_limit:
         print(
             "Le toca a",
             jugador1,
-            "⭕, selecciona una fila (0,1 o 2) y una columna(0, 1, o 2)",
+            "⭕, selecciona una fila (1,2 o 3) y una columna(1, 2, o 3)",
         )
         fila = int(input("Fila de colocación: "))
         columna = int(input("Columna: "))
         # Restamos uno al tamaño del tablero ya que empezamos en 0
-        if tablero[fila][columna] == espacio_blanco:
-            tablero[fila][columna] = figura_jugador1
+        if tablero[fila - 1][columna - 1] == espacio_blanco:
+            tablero[fila - 1][columna - 1] = figura_jugador1
             result = avaiable_square
             moves_count += 1
             player_flow = not player_flow
@@ -68,8 +68,8 @@ while moves_count < moves_limit:
         )
         fila = int(input("Fila de colocación: "))
         columna = int(input("Columna: "))
-        if tablero[fila][columna] == espacio_blanco:
-            tablero[fila][columna] = figura_jugador2
+        if tablero[fila - 1][columna - 1] == espacio_blanco:
+            tablero[fila - 1][columna - 1] = figura_jugador2
             result = avaiable_square
             moves_count += 1
             player_flow = not player_flow
@@ -79,4 +79,4 @@ while moves_count < moves_limit:
             print(victory)
             break
         print(fila1, fila2, fila3, sep="\n")
-        print(result)
+        print(result) 
