@@ -1,129 +1,84 @@
-jugador1 = input("Nombre del juagdor 1 (usará círculo): ") 
+jugador1 = input("Nombre del juagdor 1 (usará círculo): ")
 jugador2 = input("Nombre del jugador 2 (usará cruz): ")
 figura_jugador1 = "⭕"
 figura_jugador2 = "❌"
 espacio_blanco = "⬛"
-player_flow = True #Que irá cambiando para cada turno
-tablero = ["⬛", "⬛", "⬛", "⬛", "⬛", "⬛", "⬛", "⬛", "⬛"]
-fila1 = f'{tablero[0]} | {tablero[1]} | {tablero[2]}'
-fila2 = f'{tablero[3]} | {tablero[4]} | {tablero[5]}'
-fila3 = f'{tablero[6]} | {tablero[7]} | {tablero[8]}'
-occupied_square = 'Casilla ocupada, vuelve a intentarlo'
-avaiable_square = 'Turno del oponente'
+# Establecemos una condición para cambiar turnos de jugadores
+player_flow = True
+# Definimos un contador que recogerá cada movimiento
+moves_count = 0
+# Definimos los movimientos límite o máximos
+moves_limit = 9
+tablero = [["⬛", "⬛", "⬛"], ["⬛", "⬛", "⬛"], ["⬛", "⬛", "⬛"]]
+fila1 = tablero[0]
+fila2 = tablero[1]
+fila3 = tablero[2]
+# Definimos una variable para cuando la casilla está "ocupada"
+occupied_square = "Casilla ocupada, vuelve a intentarlo"
+# Definimos una variable para cuando la casilla NO está "ocupada"
+avaiable_square = "Turno del oponente"
+# Definimos una variable para valores fuera de rango
+out_of_range = "Los valores no están dentro del rango correcto, introduce otros"
+# Establecemos condiciones de victoria
+win1 = tablero[0][0] == tablero[0][1] == tablero[0][2]
+win2 = tablero[1][0] == tablero[1][1] == tablero[1][2]
+win3 = tablero[2][0] == tablero[2][1] == tablero[2][2]
+win4 = tablero[0][0] == tablero[1][0] == tablero[2][0]
+win5 = tablero[0][1] == tablero[1][1] == tablero[2][1]
+win6 = tablero[0][2] == tablero[1][2] == tablero[2][2]
+win7 = tablero[0][0] == tablero[1][1] == tablero[2][2]
+win8 = tablero[0][2] == tablero[1][1] == tablero[2][0]
+win_condition_circle = (
+    all([win1, win2, win3, win4, win5, win6, win7, win8]) == figura_jugador1
+)
+win_condition_x = (
+    all([win1, win2, win3, win4, win5, win6, win7, win8]) == figura_jugador2
+)
+victory = "Congratulations! You win the game"
+draw = "The game is tied"
 
-while True:
+while moves_count < moves_limit:
     if player_flow == True:
-        print("Le toca a", jugador1, "⭕, selecciona una fila (1,2 o 3) y una columna(a, b, o c)")
+        print(
+            "Le toca a",
+            jugador1,
+            "⭕, selecciona una fila (0,1 o 2) y una columna(0, 1, o 2)",
+        )
         fila = int(input("Fila de colocación: "))
-        columna = input("Columna: ") 
-        
-        if fila == 1 and columna.lower() == 'a':
-            n = 0
-        elif fila == 1 and columna.lower() == 'b':
-            n = 1
-        elif fila == 1 and columna.lower() == 'c':
-            n = 2
-        elif fila == 2 and columna.lower() == 'a':
-            n = 3
-        elif fila == 2 and columna.lower() == 'b':
-            n = 4
-        elif fila == 2 and columna.lower() == 'c':
-            n = 5
-        elif fila == 3 and columna.lower() == 'a':
-            n = 6
-        elif fila == 3 and columna.lower() == 'b':
-            n = 7
-        elif fila == 3 and columna.lower() == 'c':
-            n = 8
-        if tablero[n] != espacio_blanco:
-            result = occupied_square
-        else: 
-            result = avaiable_square   
-            tablero[n] = figura_jugador1
+        columna = int(input("Columna: "))
+        # Restamos uno al tamaño del tablero ya que empezamos en 0
+        if tablero[fila][columna] == espacio_blanco:
+            tablero[fila][columna] = figura_jugador1
+            result = avaiable_square
+            moves_count += 1
             player_flow = not player_flow
-            fila1 = f'{tablero[0]} | {tablero[1]} | {tablero[2]}'
-            fila2 = f'{tablero[3]} | {tablero[4]} | {tablero[5]}'
-            fila3 = f'{tablero[6]} | {tablero[7]} | {tablero[8]}'
+        else:
+            result = occupied_square
+        if win_condition_circle:
+            print(victory)
+            break
         print(fila1, fila2, fila3, sep="\n")
         print(result)
-        
 
     elif player_flow == False:
-        print("Le toca a", jugador2, "❌, selecciona una fila (1,2 o 3) y una columna(a, b, o c)")
+        print(
+            "Le toca a",
+            jugador2,
+            "❌, selecciona una fila (1,2 o 3) y una columna(1, 2, o 3)",
+        )
         fila = int(input("Fila de colocación: "))
-        columna = input("Columna: ")    
-        if fila == 1 and columna.lower() == 'a':
-            n = 0
-        elif fila == 1 and columna.lower() == 'b':
-            n = 1
-        elif fila == 1 and columna.lower() == 'c':
-            n = 2
-        elif fila == 2 and columna.lower() == 'a':
-            n = 3
-        elif fila == 2 and columna.lower() == 'b':
-            n = 4
-        elif fila == 2 and columna.lower() == 'c':
-            n = 5
-        elif fila == 3 and columna.lower() == 'a':
-            n = 6
-        elif fila == 3 and columna.lower() == 'b':
-            n = 7
-        elif fila == 3 and columna.lower() == 'c':
-            n = 8
-        if tablero[n] != espacio_blanco:
-            result = occupied_square
-        else: 
-            result = avaiable_square   
-            tablero[n] = figura_jugador2
+        columna = int(input("Columna: "))
+        if tablero[fila][columna] == espacio_blanco:
+            tablero[fila][columna] = figura_jugador2
+            result = avaiable_square
+            moves_count += 1
             player_flow = not player_flow
-            fila1 = f'{tablero[0]} | {tablero[1]} | {tablero[2]}'
-            fila2 = f'{tablero[3]} | {tablero[4]} | {tablero[5]}'
-            fila3 = f'{tablero[6]} | {tablero[7]} | {tablero[8]}'
+        else:
+            result = occupied_square
+        if win_condition_x:
+            print(victory)
+            break
         print(fila1, fila2, fila3, sep="\n")
         print(result)
-
-            
-
-'''#Establecemos las condiciones de victoria, clarificando que si son espacios en blanco no se gana
-    if tablero[0] and tablero[1] and tablero[2] != espacio_blanco:
-        if tablero[0] == tablero[1] and tablero[2]:
-            print("Ganates loco")
-            print(fila1, fila2, fila3, sep="\n")
-            break
-    elif tablero[3] and tablero[4] and tablero[5] != espacio_blanco:
-        if tablero[3] == tablero[4] and tablero[5]:
-            print("Ganates loco")
-            print(fila1, fila2, fila3, sep="\n")
-            break
-    elif tablero[6] and tablero[7] and tablero[8] != espacio_blanco:
-        if tablero[6] == tablero[7] and tablero[8]:
-            print("Ganates loco")
-            print(fila1, fila2, fila3, sep="\n")
-            break
-    elif tablero[0] and tablero[4] and tablero[8] != espacio_blanco:
-        if tablero[0] == tablero[4] and tablero[8]:
-            print("Ganates loco")
-            print(fila1, fila2, fila3, sep="\n")
-            break
-    elif tablero[2] and tablero[4] and tablero[6] != espacio_blanco:
-        if tablero[2] == tablero[4] and tablero[6]:
-            print("Ganates loco")
-            print(fila1, fila2, fila3, sep="\n")
-            break
-    elif tablero[0] and tablero[3] and tablero[6] != espacio_blanco:
-        if tablero[0] == tablero[3] and tablero[6]:
-            print("Ganates loco")
-            print(fila1, fila2, fila3, sep="\n")
-            break
-    elif tablero[1] and tablero[4] and tablero[7] != espacio_blanco:
-        if tablero[1] == tablero[4] and tablero[7]:
-            print("Ganates loco")
-            print(fila1, fila2, fila3, sep="\n")
-            break
-    elif tablero[2] and tablero[5] and tablero[8] != espacio_blanco:
-        if tablero[2] == tablero[5] and tablero[8]:
-            print("Ganates loco")
-            print(fila1, fila2, fila3, sep="\n")
-            break'''
             
 
