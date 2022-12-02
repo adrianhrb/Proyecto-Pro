@@ -20,14 +20,14 @@ avaiable_square = "Turno del oponente"
 # Definimos una variable para valores fuera de rango
 out_of_range = "Los valores no están dentro del rango correcto, introduce otros"
 # Establecemos condiciones de victoria
-win1 = tablero[0][0] == tablero[0][1] == tablero[0][2]
-win2 = tablero[1][0] == tablero[1][1] == tablero[1][2]
-win3 = tablero[2][0] == tablero[2][1] == tablero[2][2]
-win4 = tablero[0][0] == tablero[1][0] == tablero[2][0]
-win5 = tablero[0][1] == tablero[1][1] == tablero[2][1]
-win6 = tablero[0][2] == tablero[1][2] == tablero[2][2]
-win7 = tablero[0][0] == tablero[1][1] == tablero[2][2]
-win8 = tablero[0][2] == tablero[1][1] == tablero[2][0]
+win1 = tablero[0][0] = tablero[0][1] = tablero[0][2]
+win2 = tablero[1][0] = tablero[1][1] = tablero[1][2]
+win3 = tablero[2][0] = tablero[2][1] = tablero[2][2]
+win4 = tablero[0][0] = tablero[1][0] = tablero[2][0]
+win5 = tablero[0][1] = tablero[1][1] = tablero[2][1]
+win6 = tablero[0][2] = tablero[1][2] = tablero[2][2]
+win7 = tablero[0][0] = tablero[1][1] = tablero[2][2]
+win8 = tablero[0][2] = tablero[1][1] = tablero[2][0]
 win_condition_circle = (
     all([win1, win2, win3, win4, win5, win6, win7, win8]) == figura_jugador1
 )
@@ -46,7 +46,6 @@ while moves_count < moves_limit:
         )
         fila = int(input("Fila de colocación: "))
         columna = int(input("Columna: "))
-        # Restamos uno al tamaño del tablero ya que empezamos en 0
         if tablero[fila][columna] == espacio_blanco:
             tablero[fila][columna] = figura_jugador1
             result = avaiable_square
@@ -80,5 +79,3 @@ while moves_count < moves_limit:
             break
         print(fila1, fila2, fila3, sep="\n")
         print(result)
-            
-
