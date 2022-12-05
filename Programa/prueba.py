@@ -1,83 +1,81 @@
-jugador1 = input("Nombre del juagdor 1 (usará ⭕): ")
-jugador2 = input("Nombre del jugador 2 (usará cruz ❌): ")
-figura_jugador1 = "⭕"
-figura_jugador2 = "❌"
-# Establecemos una condición para cambiar turnos de jugadores
+player1 = input("Name of player 1 (usará ⭕): ")
+player2 = input("Name of player 2 (usará cruz ❌): ")
+figure_player1 = "⭕"
+figure_player2 = "❌"
+# Establecemos una condición para cambiar turnos entre jugadores
 player_flow = True
 # Definimos un contador que recogerá cada movimiento
 moves_count = 0
 # Definimos los movimientos límite o máximos
 moves_limit = 9
-tablero = [["⬛", "⬛", "⬛"], ["⬛", "⬛", "⬛"], ["⬛", "⬛", "⬛"]]
-# Definimos una variable para cuando la casilla está "ocupada"
+board = [["⬛", "⬛", "⬛"], ["⬛", "⬛", "⬛"], ["⬛", "⬛", "⬛"]]
+# Variables que representan posibles errores
 occupied_square = "Casilla ocupada, vuelve a intentarlo"
-# Definimos una variable para cuando la casilla NO está "ocupada"
-avaiable_square = "Turno del oponente"
-# Definimos una variable para valores fuera de rango
 out_of_range = "Los valores no están dentro del rango correcto, introduce otros que sean correctos"
-# Variables que irá tomando valores dentro del bucle
+# Variables que van tomando valores dentro del bucle
 error_message = ""
-jugando = True
+playing = True
 victory = ""
-while jugando:
-    for fila in tablero:
-        for columna in fila:
-            print(columna, end=" ")
+while playing:
+#Bucle que va a mostrar el tablero
+    for line in board:
+        for column in line:
+            print(column, end=" ")
         print()
     if player_flow:
-        print("Le toca a",jugador1,"⭕, selecciona una fila (1,2 o 3) y una columna(1, 2, o 3)")
-        fila = int(input("Fila de colocación: "))
-        columna = int(input("Columna: "))
-        # Restamos uno al tamaño del tablero ya que empezamos en 0
-        if 1 <= fila <= 3 and 1 <= columna <= 3 and tablero[fila - 1][columna - 1] == "⬛":
-            tablero[fila - 1][columna - 1] = figura_jugador1
+        print("It's",player1,"⭕ turn, select a line (1,2 o 3) and a column (1,2, o 3)")
+        line = int(input("line in board: "))
+        column = int(input("column: "))
+        # Restamos uno al tamaño del board ya que empezamos en 0
+        if 1 <= line <= 3 and 1 <= column <= 3 and board[line - 1][column - 1] == "⬛":
+            board[line - 1][column - 1] = figure_player1
             moves_count += 1
             player_flow = not player_flow
         else:
-            if 1 > fila or fila > 3 or 1 > columna or columna > 3:
+            if 1 > line or line > 3 or 1 > column or column > 3:
                 error_message = out_of_range
-            elif tablero[fila - 1][columna - 1] != "⬛":
+            elif board[line - 1][column - 1] != "⬛":
                 error_message = occupied_square
             print(error_message)
     else:
-        print("Le toca a",jugador2,"❌, selecciona una fila (1,2 o 3) y una columna(1, 2, o 3)")
-        fila = int(input("Fila de colocación: "))
-        columna = int(input("Columna: "))
-        if 1 <= fila <= 3 and 1 <= columna <= 3 and tablero[fila - 1][columna - 1] == "⬛":
-            tablero[fila - 1][columna - 1] = figura_jugador2
+        print("It's",player2,"❌ turn, select a line (1,2 o 3) and a column (1,2, o 3)")
+        line = int(input("line in board: "))
+        column = int(input("column: "))
+        if 1 <= line <= 3 and 1 <= column <= 3 and board[line - 1][column - 1] == "⬛":
+            board[line - 1][column - 1] = figure_player2
             moves_count += 1
             player_flow = not player_flow
         else:
-            if 1 > fila or fila > 3 or 1 > columna or columna > 3:
+            if 1 > line or line > 3 or 1 > column or column > 3:
                 error_message = out_of_range
-            elif tablero[fila - 1][columna - 1] != "⬛":
+            elif board[line - 1][column - 1] != "⬛":
                 error_message = occupied_square
             print(error_message)
 
 #Definimos las condiciones de victoria
-    for fila in range(3):
-        if tablero[fila][0] == tablero[fila][1] == tablero[fila][2] != "⬛":
-            victory = f'¡¡Ha ganado el jugador con {tablero[fila][0]}!!'
-            jugando = not jugando
+    for line in range(3):
+        if board[line][0] == board[line][1] == board[line][2] != "⬛":
+            victory = f'¡¡{board[line][0]} figure has won!!'
+            playing = not playing
             break
-    for columna in range(3):
-        if tablero[0][columna] == tablero[1][columna] == tablero[2][columna] != "⬛":
-            victory = f'¡¡Ha ganado el jugador con {tablero[0][columna]}!!'
-            jugando = not jugando
+    for column in range(3):
+        if board[0][column] == board[1][column] == board[2][column] != "⬛":
+            victory = f'¡¡{board[0][column]} figure has won!!'
+            playing = not playing
             break
-    if tablero[0][0] == tablero[1][1] == tablero[2][2] != "⬛":
-        victory = f'¡¡Ha ganado el jugador con {tablero[0][0]}!!'
-        jugando = not jugando
-    elif tablero[0][2] == tablero[1][1] == tablero[2][0] != "⬛":
-        victory = f'¡¡Ha ganado el jugador con {tablero[0][2]}!!'
-        jugando = not jugando
+    if board[0][0] == board[1][1] == board[2][2] != "⬛":
+        victory = f'¡¡{board[0][0]} figure has won!!'
+        playing = not playing
+    elif board[0][2] == board[1][1] == board[2][0] != "⬛":
+        victory = f'¡¡{board[0][2]} has won!!'
+        playing = not playing
     else:
         if moves_count == moves_limit:
-            victory = "La partida ha quedado en empate"
-            jugando = not jugando
+            victory = "The game is a draw"
+            playing = not playing
 
-for fila in tablero:
-    for columna in fila:
-        print(columna, end=" ")
+for line in board:
+    for column in line:
+        print(column, end=" ")
     print()
 print(victory)
