@@ -1,8 +1,8 @@
 # PROYECTO PROGRAMACIÓN: TRES EN RAYA
-![](https://img2.apkgit.com/7e/com.appsmoviles.tresenraya/26.08.19/icon.png)  
+![](img/tot_virus-1.png)  
 
 Repositorio dedicado al proyecto de programación: Tres en raya  
 
 ## ***Programa en python:***  
 - [Descripción y documentación](Programa/Readme.md)  
-- [Programa (en desarrollo)](Programa/tres_raya.py)
+- [Programa](Programa/tres_raya.py)
